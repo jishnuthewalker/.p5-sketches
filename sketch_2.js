@@ -10,7 +10,7 @@ function setup() {
 
 function draw() {
   background(51);
-  drawCircle(width/2,height/2,400); 
+  drawCircle(mouseX/2,mouseY/2,400); 
   noLoop();
 }
 
