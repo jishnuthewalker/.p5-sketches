@@ -5,12 +5,12 @@ function setup() {
 
 function draw() {
   background(200);
-  length = 300;
+  length = mouseY/5;
   //rect(180, 60, 220, 40);
   n = 0;
   while (n < length) {
     n++;
-    point(width/2 + n, mouseY);
-    rect(180, 60, mouseX, 40);
+    point(windowWidth/2 + n, mouseY);
+    rect(windowWidth/8, 60, mouseX, 40);
   }
 }
