@@ -10,7 +10,7 @@ function draw() {
   n = 0;
   while (n < length) {
     n++;
-    point(960 + n, mouseY);
+    point(width/2 + n, mouseY);
     rect(180, 60, mouseX, 40);
   }
 }
