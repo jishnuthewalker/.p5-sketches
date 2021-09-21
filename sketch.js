@@ -1,16 +1,16 @@
 function setup() {
-  // put setup code here
-  canScale=4;
-  createCanvas(480*canScale,120*canScale);
+  createCanvas(1920,1080);
+  strokeWeight(8);
 }
 
 function draw() {
-  // put drawing code here
-  //background(204);
-  if (mouseIsPressed) {
-    fill(0);
-    }  else {
-       fill(255);
-    }
-  ellipse(mouseX,mouseY,80,80);
+  background(200);
+  length = 300;
+  //rect(180, 60, 220, 40);
+  n = 0;
+  while (n < length) {
+    n++;
+    point(960 + n, mouseY);
+    rect(180, 60, mouseX, 40);
+  }
 }
