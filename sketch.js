@@ -27,8 +27,8 @@ function draw() {
 
 //  diam = 100;
   diam = mouseY/5 + 50;
-  for (y = 0; y < height; y += diam) {
-    for (x = 0; x < width; x += diam) {
+  for (y = 0; y < height + diam; y += diam) {
+    for (x = 0; x < width + diam; x += diam) {
       fill(255, 140, 36);
       ellipse(x, y, diam, diam);
     }
