@@ -1,10 +1,10 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  strokeWeight(8);
+  strokeWeight(4);
 }
 
 function draw() {
-  background(200);
+  background(0);
 
   //while loop test
 
@@ -17,20 +17,41 @@ function draw() {
     rect(windowWidth/8, 60, mouseX - rectPosY, 40);
   } */
 
+  //for loop test
+
 /*  length = mouseY/5;
     for (var i = 0; i < length; i++) {
     rectPosY = windowWidth/8;
     point(windowWidth/2 + i, mouseY);
     rect(windowWidth/8, 60, mouseX - rectPosY, 40)
-  }
-  */
+  }*/
 
-//  diam = 100;
+/*
+  //circle grid
   diam = mouseY/5 + 50;
   for (y = 0; y < height + diam; y += diam) {
     for (x = 0; x < width + diam; x += diam) {
       fill(255, 140, 36);
       ellipse(x, y, diam, diam);
     }
+  } */
+
+  border = 100;
+  spacing = 30;
+  diam = 5;
+  for (x = border; x < width - border; x += spacing) {
+    for (y = border; y < height - border; y += spacing) {
+      fill(255);
+      strokeWeight(1);
+      colourR = (mouseY/width) * 255;
+      colourG = (mouseX/height) * 255;
+      colourB = (colourG + colourR) / 2;
+      stroke(colourR, colourG, colourB);
+      line(x, y, mouseX, mouseY);
+      ellipse(x, y, diam, diam);
+    }
   }
+
+
+
 }
