@@ -36,30 +36,28 @@ function draw() {
     }
   } */
 
-
-  fill(255);
-  strokeWeight(1);
   border = 100;
   spacing = 30;
   diam = 5;
-  colourR = (mouseY/width) * 255;
-  colourG = (mouseX/height) * 255;
-  colourB = (colourG + colourR) / 2;
+  colourR = (mouseY/windowWidth) * 255;
+  colourG = 255 - ((mouseX/windowHeight) * 255);
+  colourB = 255 - ((colourG + colourR) / 2);
+  fill(255);
+  strokeWeight(1);
+  stroke(colourR, colourG, colourB);
   for (x = border; x < width - border; x += spacing) {
     for (y = border; y < height - border; y += spacing) {
       if (mouseIsPressed) {
-          stroke(colourR, colourG, colourB);
           line(x, y, mouseX, mouseY);
 //          ellipse(x, y, diam, diam);
     }
-      ellipse(x, y, diam, diam);
+//      ellipse(x, y, diam, diam);
   }
 
 }
 
 for (x = border; x < width - border; x += spacing) {
   for (y = border; y < height - border; y += spacing) {
-    stroke(colourR, colourG, colourB);
     ellipse(x, y, diam, diam);
 }
 
