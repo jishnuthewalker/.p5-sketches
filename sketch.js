@@ -36,7 +36,7 @@ function draw() {
     }
   } */
 
-  border = 100;
+  border = 200;
   spacing = 30;
   diam = 5;
   colourR = (mouseY/windowWidth) * 255;
@@ -63,6 +63,11 @@ for (x = border; x < width - border; x += spacing) {
 
 }
 
+function draw() {
+  clear();
+  let display = touches.length + ' touches';
+  text(display, 5, 10);
+}
 
 
 
