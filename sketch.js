@@ -1,10 +1,11 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
   strokeWeight(4);
+  background(0);
 }
 
 function draw() {
-  background(0);
+  //background(0);
 
   //while loop test
 
@@ -36,12 +37,12 @@ function draw() {
     }
   } */
 
-  border = 200;
-  spacing = 30;
+  border = 100;
+  spacing = 200;
   diam = 5;
-  colourR = (mouseY/windowWidth) * 255;
-  colourG = 255 - ((mouseX/windowHeight) * 255);
-  colourB = 255 - ((colourG + colourR) / 2);
+  colourR = 255 - (((mouseY/windowWidth)) * 255);
+  colourG = 255 - (((mouseX/windowHeight)) * 255);
+  colourB = 255 - (((colourG + colourR)) / 2);
   fill(255);
   strokeWeight(1);
   stroke(colourR, colourG, colourB);
