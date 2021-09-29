@@ -1,21 +1,32 @@
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  strokeWeight(4);
+  slidX = createSlider(0, 500, 100);
+  slidX.position(10, 10);
+  slidY = createSlider(0, 500, 100);
+  slidY.position(10, 40);
+  slidZ = createSlider(0, 500, 100);
+  slidZ.position(10, 70);
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  graphics = createGraphics(200,200);
+  graphics.background(255);
+
+
+//  slider.style('width', '80px');
+
 }
 
 function draw() {
-  background(0);
+  background(255);
+  valX = slidX.value();
+  valY = slidY.value();
+  valZ = slidZ.value();
+  square(200, 200, 200);
+  rotateX(0.5);
+  rotateY(0.5);
+  rotateZ(1.3);
+  box(valX, valY, valZ);
 
-  //while loop test
 
-    length = mouseY/5;
-    i = 0;
-    while (i < length) {
-    rectPosY = windowWidth/8;
-    i++;
-    point(windowWidth/2 + i, mouseY);
-    rect(windowWidth/8, 60, mouseX - rectPosY, 40);
-  }
+
 
 
 

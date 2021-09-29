@@ -1,11 +1,24 @@
+let checkbox;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  checkbox = createCheckbox('draw mode', false);
   strokeWeight(4);
-  background(0);
+//  background(0);
 }
 
 function draw() {
-  //background(0);
+
+  checkbox.changed(tick);
+  box = 0;
+
+  function tick() {
+    box = 255;
+  }
+
+  background(0, 0, 0, box);
+
+
 
   //while loop test
 
@@ -69,7 +82,5 @@ function draw() {
   let display = touches.length + ' touches';
   text(display, 5, 10);
 }
-
-
 
 }
