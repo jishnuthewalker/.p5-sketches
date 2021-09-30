@@ -11,7 +11,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   strokeWeight(2);
   smooth();
-  input = createinput('tetxt here');
+  input = createInput('tetxt here');
 //  background(0);
   textHorSlider = createSlider(0,100,20); textHorSlider.position(15,367); textHorSlider.style('width','100px');
   textHeightSlider = createSlider(0,100,40); textHeightSlider.position(15,397); textHeightSlider.style('width','100px');
