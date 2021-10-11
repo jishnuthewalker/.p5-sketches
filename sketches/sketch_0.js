@@ -8,15 +8,15 @@ function setup() {
 }
 
 function draw() {
-
+/*
   checkbox.changed(tick);
   box = 0;
 
   function tick() {
     box = 255;
   }
-
-  background(0, 0, 0, box);
+*/
+  background(0, 0, 0);
 
 
 
@@ -77,10 +77,13 @@ for (x = border; x < width - border; x += spacing) {
 
 }
 
+/*
 function draw() {
   clear();
   let display = touches.length + ' touches';
   text(display, 5, 10);
 }
+
+*/
 
 }
