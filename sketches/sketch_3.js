@@ -50,6 +50,6 @@ endShape();
 textFont(myFont);
 fill(255);
 textSize(30);
-text("fuck everything", 100, 100);
+text("what is dreaming?", 100, 100);
 
 }

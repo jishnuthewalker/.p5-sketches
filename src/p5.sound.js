@@ -50,7 +50,7 @@
  */
 
 /**
- *  p5.sound 
+ *  p5.sound
  *  https://p5js.org/reference/#/libraries/p5.sound
  *
  *  From the Processing Foundation and contributors
@@ -70,7 +70,7 @@
  *   Web Audio API: http://w3.org/TR/webaudio/
  */
 
- (function(modules) { 
+ (function(modules) {
  	var installedModules = {};
  	function __webpack_require__(moduleId) {
  		if(installedModules[moduleId]) {
@@ -153,7 +153,7 @@ global.TONE_SILENCE_VERSION_LOGGING = true;
 
 
 
-var audiocontext = new window.AudioContext(); 
+var audiocontext = new window.AudioContext();
 
 Tone_core_Tone__WEBPACK_IMPORTED_MODULE_1___default.a.setContext(audiocontext);
 /**
@@ -404,7 +404,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
 
 (function () {
   function fixSetTarget(param) {
-    if (!param) 
+    if (!param)
       return;
     if (!param.setTargetAtTime) param.setTargetAtTime = param.setTargetValueAtTime;
   }
@@ -529,7 +529,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
   if (window.hasOwnProperty('webkitOfflineAudioContext') && !window.hasOwnProperty('OfflineAudioContext')) {
     window.OfflineAudioContext = window.webkitOfflineAudioContext;
   }
-})(window); 
+})(window);
 
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -694,32 +694,32 @@ var main_Main = function Main() {
   _classCallCheck(this, Main);
 
   this.input = audiocontext["a" ].createGain();
-  this.output = audiocontext["a" ].createGain(); 
+  this.output = audiocontext["a" ].createGain();
 
   this.limiter = audiocontext["a" ].createDynamicsCompressor();
   this.limiter.threshold.value = -3;
   this.limiter.ratio.value = 20;
   this.limiter.knee.value = 1;
   this.audiocontext = audiocontext["a" ];
-  this.output.disconnect(); 
+  this.output.disconnect();
 
-  this.input.connect(this.limiter); 
+  this.input.connect(this.limiter);
 
-  this.limiter.connect(this.output); 
+  this.limiter.connect(this.output);
 
   this.meter = audiocontext["a" ].createGain();
   this.fftMeter = audiocontext["a" ].createGain();
   this.output.connect(this.meter);
-  this.output.connect(this.fftMeter); 
+  this.output.connect(this.fftMeter);
 
-  this.output.connect(this.audiocontext.destination); 
+  this.output.connect(this.audiocontext.destination);
 
-  this.soundArray = []; 
+  this.soundArray = [];
 
-  this.parts = []; 
+  this.parts = [];
 
   this.extensions = [];
-}; 
+};
 
 
 var p5sound = new main_Main();
@@ -789,7 +789,7 @@ p5.prototype.outputVolume = function (vol) {
  */
 
 
-p5.prototype.soundOut = p5.soundOut = p5sound; 
+p5.prototype.soundOut = p5.soundOut = p5sound;
 
 p5.soundOut._silentNode = p5sound.audiocontext.createGain();
 p5.soundOut._silentNode.gain.value = 0;
@@ -886,7 +886,7 @@ function freqToMidi(f) {
 
 function midiToFreq(m) {
   return 440 * Math.pow(2, (m - 69) / 12.0);
-} 
+}
 
 
 function noteToFreq(note) {
@@ -954,7 +954,7 @@ function noteToFreq(note) {
 
 
 function soundFormats() {
-  main.extensions = []; 
+  main.extensions = [];
 
   for (var i = 0; i < arguments.length; i++) {
     arguments[i] = arguments[i].toLowerCase();
@@ -974,12 +974,12 @@ function disposeSound() {
 }
 
 function _checkFileFormats(paths) {
-  var path; 
+  var path;
 
   if (typeof paths === 'string') {
-    path = paths; 
+    path = paths;
 
-    var extTest = path.split('.').pop(); 
+    var extTest = path.split('.').pop();
 
     if (['mp3', 'wav', 'ogg', 'm4a', 'aac'].indexOf(extTest) > -1) {
       if (!p5.prototype.isFileSupported(extTest)) {
@@ -1009,7 +1009,7 @@ function _checkFileFormats(paths) {
           }
         }
       }
-    } 
+    }
     else {
         for (var _i3 = 0; _i3 < main.extensions.length; _i3++) {
           var _extension2 = main.extensions[_i3];
@@ -1022,7 +1022,7 @@ function _checkFileFormats(paths) {
           }
         }
       }
-  } 
+  }
   else if (_typeof(paths) === 'object') {
       for (var i = 0; i < paths.length; i++) {
         var extension = paths[i].split('.').pop();
@@ -1059,12 +1059,12 @@ function _mathChain(o, math, thisChain, nextChain, type) {
   math.connect(nextChain);
   o.mathOps[thisChain] = math;
   return o;
-} 
+}
 
 
 function convertToWav(audioBuffer) {
   var leftChannel, rightChannel;
-  leftChannel = audioBuffer.getChannelData(0); 
+  leftChannel = audioBuffer.getChannelData(0);
 
   if (audioBuffer.numberOfChannels > 1) {
     rightChannel = audioBuffer.getChannelData(1);
@@ -1072,27 +1072,27 @@ function convertToWav(audioBuffer) {
     rightChannel = leftChannel;
   }
 
-  var interleaved = interleave(leftChannel, rightChannel); 
+  var interleaved = interleave(leftChannel, rightChannel);
 
   var buffer = new window.ArrayBuffer(44 + interleaved.length * 2);
-  var view = new window.DataView(buffer); 
+  var view = new window.DataView(buffer);
 
   writeUTFBytes(view, 0, 'RIFF');
   view.setUint32(4, 36 + interleaved.length * 2, true);
-  writeUTFBytes(view, 8, 'WAVE'); 
+  writeUTFBytes(view, 8, 'WAVE');
 
   writeUTFBytes(view, 12, 'fmt ');
   view.setUint32(16, 16, true);
-  view.setUint16(20, 1, true); 
+  view.setUint16(20, 1, true);
 
   view.setUint16(22, 2, true);
   view.setUint32(24, main.audiocontext.sampleRate, true);
   view.setUint32(28, main.audiocontext.sampleRate * 4, true);
   view.setUint16(32, 4, true);
-  view.setUint16(34, 16, true); 
+  view.setUint16(34, 16, true);
 
   writeUTFBytes(view, 36, 'data');
-  view.setUint32(40, interleaved.length * 2, true); 
+  view.setUint32(40, interleaved.length * 2, true);
 
   var lng = interleaved.length;
   var index = 44;
@@ -1104,7 +1104,7 @@ function convertToWav(audioBuffer) {
   }
 
   return view;
-} 
+}
 
 
 function interleave(leftChannel, rightChannel) {
@@ -1130,7 +1130,7 @@ function writeUTFBytes(view, offset, string) {
 }
 
 function safeBufferSize(idealBufferSize) {
-  var bufferSize = idealBufferSize; 
+  var bufferSize = idealBufferSize;
 
   var tempAudioWorkletNode = new AudioWorkletNode(main.audiocontext, processorNames_default.a.soundFileProcessor);
 
@@ -1167,13 +1167,13 @@ var CustomError = function CustomError(name, errorTrace, failedPath) {
   err.name = name;
   err.originalStack = err.stack + errorTrace;
   tempStack = err.stack + errorTrace;
-  err.failedPath = failedPath; 
+  err.failedPath = failedPath;
 
   splitStack = tempStack.split('\n').filter(function (ln) {
     return !ln.match(/(p5.|native code|globalInit)/g);
   });
   err.stack = splitStack.join('\n');
-  return err; 
+  return err;
 };
 
  var errorHandler = (CustomError);
@@ -1193,11 +1193,11 @@ function loadAudioWorkletModules() {
 }
 
 p5.prototype.registerMethod('init', function () {
-  if (initializedAudioWorklets) return; 
+  if (initializedAudioWorklets) return;
 
   if (!this.preload && !window.preload) {
     this.preload = function () {};
-  } 
+  }
 
 
   this._incrementPreload();
@@ -1218,7 +1218,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 var panner_ac = main.audiocontext;
-var panner; 
+var panner;
 
 if (typeof panner_ac.createStereoPanner !== 'undefined') {
   var Panner =
@@ -1237,7 +1237,7 @@ if (typeof panner_ac.createStereoPanner !== 'undefined') {
         var time = tFromNow || 0;
         var t = panner_ac.currentTime + time;
         this.stereoPanner.pan.linearRampToValueAtTime(val, t);
-      } 
+      }
 
     }, {
       key: "inputChannels",
@@ -1271,7 +1271,7 @@ if (typeof panner_ac.createStereoPanner !== 'undefined') {
       this.left = panner_ac.createGain();
       this.right = panner_ac.createGain();
       this.left.channelInterpretation = 'discrete';
-      this.right.channelInterpretation = 'discrete'; 
+      this.right.channelInterpretation = 'discrete';
 
       if (numInputChannels > 1) {
         this.splitter = panner_ac.createChannelSplitter(2);
@@ -1287,7 +1287,7 @@ if (typeof panner_ac.createStereoPanner !== 'undefined') {
       this.left.connect(this.output, 0, 1);
       this.right.connect(this.output, 0, 0);
       this.output.connect(output);
-    } 
+    }
 
 
     _createClass(_Panner, [{
@@ -1375,17 +1375,17 @@ var Cue = function Cue(callback, time, id, val) {
   this.time = time;
   this.id = id;
   this.val = val;
-}; 
+};
 
 
 function _clearOnEnd(e) {
   var thisBufferSourceNode = e.target;
-  var soundFile = this; 
+  var soundFile = this;
 
   thisBufferSourceNode._playing = false;
-  thisBufferSourceNode.removeEventListener('ended', soundFile._clearOnEnd); 
+  thisBufferSourceNode.removeEventListener('ended', soundFile._clearOnEnd);
 
-  soundFile._onended(soundFile); 
+  soundFile._onended(soundFile);
 
 
   soundFile.bufferSourceNodes.map(function (_, i) {
@@ -1475,7 +1475,7 @@ function () {
         if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
           throw 'Unable to load file because the File API is not supported';
         }
-      } 
+      }
 
 
       if (paths.file) {
@@ -1483,7 +1483,7 @@ function () {
       }
 
       this.file = paths;
-    } 
+    }
 
 
     this._onended = function () {};
@@ -1491,38 +1491,38 @@ function () {
     this._looping = false;
     this._playing = false;
     this._paused = false;
-    this._pauseTime = 0; 
+    this._pauseTime = 0;
 
     this._cues = [];
-    this._cueIDCounter = 0; 
+    this._cueIDCounter = 0;
 
     this._lastPos = 0;
     this._counterNode = null;
-    this._workletNode = null; 
+    this._workletNode = null;
 
-    this.bufferSourceNodes = []; 
+    this.bufferSourceNodes = [];
 
     this.bufferSourceNode = null;
     this.buffer = null;
     this.playbackRate = 1;
     this.input = main.audiocontext.createGain();
     this.output = main.audiocontext.createGain();
-    this.reversed = false; 
+    this.reversed = false;
 
     this.startTime = 0;
     this.endTime = null;
-    this.pauseTime = 0; 
+    this.pauseTime = 0;
 
-    this.mode = 'sustain'; 
+    this.mode = 'sustain';
 
-    this.startMillis = null; 
+    this.startMillis = null;
 
     this.panPosition = 0.0;
-    this.panner = new panner_0(this.output, main.input, 2); 
+    this.panner = new panner_0(this.output, main.input, 2);
 
     if (this.url || this.file) {
       this.load(onload, onerror);
-    } 
+    }
 
 
     main.soundArray.push(this);
@@ -1533,9 +1533,9 @@ function () {
       this._whileLoading = function () {};
     }
 
-    this._clearOnEnd = _clearOnEnd.bind(this); 
+    this._clearOnEnd = _clearOnEnd.bind(this);
 
-    this.amp = this.setVolume; 
+    this.amp = this.setVolume;
 
     this.fade = this.setVolume;
   }
@@ -1568,7 +1568,7 @@ function () {
         request.onload = function () {
           if (request.status === 200) {
             if (!self.panner) return;
-            soundfile_ac.decodeAudioData(request.response, 
+            soundfile_ac.decodeAudioData(request.response,
             function (buff) {
               if (!self.panner) return;
               self.buffer = buff;
@@ -1577,7 +1577,7 @@ function () {
               if (callback) {
                 callback(self);
               }
-            }, 
+            },
             function () {
               if (!self.panner) return;
               var err = new errorHandler('decodeAudioData', errorTrace, self.url);
@@ -1590,7 +1590,7 @@ function () {
                 console.error(msg + '\n The error stack trace includes: \n' + err.stack);
               }
             });
-          } 
+          }
           else {
               if (!self.panner) return;
               var err = new errorHandler('loadSound', errorTrace, self.url);
@@ -1603,7 +1603,7 @@ function () {
                 console.error(msg + '\n The error stack trace includes: \n' + err.stack);
               }
             }
-        }; 
+        };
 
 
         request.onerror = function () {
@@ -1645,7 +1645,7 @@ function () {
 
         reader.readAsArrayBuffer(this.file);
       }
-    } 
+    }
 
   }, {
     key: "_updateProgress",
@@ -1653,7 +1653,7 @@ function () {
       if (evt.lengthComputable) {
         var percentComplete = evt.loaded / evt.total * 0.99;
 
-        this._whileLoading(percentComplete, evt); 
+        this._whileLoading(percentComplete, evt);
 
       } else {
         this._whileLoading('size unknown');
@@ -1713,25 +1713,25 @@ function () {
 
       if (typeof amp !== 'undefined') {
         this.setVolume(amp);
-      } 
+      }
 
 
       if (this.buffer) {
-        this._pauseTime = 0; 
+        this._pauseTime = 0;
 
         if (this.mode === 'restart' && this.buffer && this.bufferSourceNode) {
           this.bufferSourceNode.stop(time);
 
           this._counterNode.stop(time);
-        } 
+        }
 
 
         if (this.mode === 'untildone' && this.isPlaying()) {
           return;
-        } 
+        }
 
 
-        this.bufferSourceNode = this._initSourceNode(); 
+        this.bufferSourceNode = this._initSourceNode();
 
         delete this._counterNode;
         this._counterNode = this._initCounterNode();
@@ -1748,7 +1748,7 @@ function () {
 
         if (duration) {
           duration = duration <= this.buffer.duration - cueStart ? duration : this.buffer.duration;
-        } 
+        }
 
 
         if (this._paused) {
@@ -1762,15 +1762,15 @@ function () {
         }
 
         this._playing = true;
-        this._paused = false; 
+        this._paused = false;
 
         this.bufferSourceNodes.push(this.bufferSourceNode);
         this.bufferSourceNode._arrayIndex = this.bufferSourceNodes.length - 1;
         this.bufferSourceNode.addEventListener('ended', this._clearOnEnd);
-      } 
+      }
       else {
           throw 'not ready to play file, buffer has yet to load. Try preload()';
-        } 
+        }
 
 
       this.bufferSourceNode.loop = this._looping;
@@ -1828,14 +1828,14 @@ function () {
   }, {
     key: "playMode",
     value: function playMode(str) {
-      var s = str.toLowerCase(); 
+      var s = str.toLowerCase();
 
       if (s === 'restart' && this.buffer && this.bufferSourceNode) {
         for (var i = 0; i < this.bufferSourceNodes.length - 1; i++) {
           var now = main.audiocontext.currentTime;
           this.bufferSourceNodes[i].stop(now);
         }
-      } 
+      }
 
 
       if (s === 'restart' || s === 'sustain' || s === 'untildone') {
@@ -1897,7 +1897,7 @@ function () {
 
         this._counterNode.stop(pTime);
 
-        this._pauseTime = this.currentTime(); 
+        this._pauseTime = this.currentTime();
       } else {
         this._pauseTime = 0;
       }
@@ -2223,7 +2223,7 @@ function () {
       }
 
       return this.playbackRate;
-    } 
+    }
 
   }, {
     key: "setPitch",
@@ -2422,7 +2422,7 @@ function () {
                 var value = chan[j];
 
                 if (value > max) {
-                  max = value; 
+                  max = value;
                 } else if (-value > max) {
                   max = value;
                 }
@@ -2480,7 +2480,7 @@ function () {
 
         for (var i = 0; i < numChannels; i++) {
           this.buffer.getChannelData(i).reverse();
-        } 
+        }
 
 
         this.reversed = !this.reversed;
@@ -2520,7 +2520,7 @@ function () {
   }, {
     key: "dispose",
     value: function dispose() {
-      var now = main.audiocontext.currentTime; 
+      var now = main.audiocontext.currentTime;
 
       var index = main.soundArray.indexOf(this);
       main.soundArray.splice(index, 1);
@@ -2653,10 +2653,10 @@ function () {
         channel.set(buf[channelNum]);
       }
 
-      this.buffer = newBuffer; 
+      this.buffer = newBuffer;
 
       this.panner.inputChannels(numChannels);
-    } 
+    }
 
   }, {
     key: "_initCounterNode",
@@ -2666,7 +2666,7 @@ function () {
       var self = this;
       var now = soundfile_ac.currentTime;
       var cNode = soundfile_ac.createBufferSource();
-      var workletBufferSize = safeBufferSize(256); 
+      var workletBufferSize = safeBufferSize(256);
 
       if (self._workletNode) {
         self._workletNode.disconnect();
@@ -2686,11 +2686,11 @@ function () {
             return;
           }
 
-          _this._lastPos = event.data.position; 
+          _this._lastPos = event.data.position;
 
           _this._onTimeUpdate(self._lastPos);
         }
-      }; 
+      };
 
 
       cNode.buffer = _createCounterBuffer(self.buffer);
@@ -2700,7 +2700,7 @@ function () {
       self._workletNode.connect(p5.soundOut._silentNode);
 
       return cNode;
-    } 
+    }
 
   }, {
     key: "_initSourceNode",
@@ -2782,7 +2782,7 @@ function () {
       var id = this._cueIDCounter++;
       var cue = new Cue(callback, time, id, val);
 
-      this._cues.push(cue); 
+      this._cues.push(cue);
 
 
       return id;
@@ -2824,8 +2824,8 @@ function () {
   }, {
     key: "clearCues",
     value: function clearCues() {
-      this._cues = []; 
-    } 
+      this._cues = [];
+    }
 
   }, {
     key: "_onTimeUpdate",
@@ -3069,7 +3069,7 @@ function () {
   function Amplitude(smoothing) {
     amplitude_classCallCheck(this, Amplitude);
 
-    this.bufferSize = safeBufferSize(2048); 
+    this.bufferSize = safeBufferSize(2048);
 
     this.audiocontext = main.audiocontext;
     this._workletNode = new AudioWorkletNode(this.audiocontext, processorNames_default.a.amplitudeProcessor, {
@@ -3092,11 +3092,11 @@ function () {
         this.stereoVol = event.data.stereoVol;
         this.stereoVolNorm = event.data.stereoVolNorm;
       }
-    }.bind(this); 
+    }.bind(this);
 
 
     this.input = this._workletNode;
-    this.output = this.audiocontext.createGain(); 
+    this.output = this.audiocontext.createGain();
 
     this.volume = 0;
     this.volNorm = 0;
@@ -3106,11 +3106,11 @@ function () {
 
     this._workletNode.connect(this.output);
 
-    this.output.gain.value = 0; 
+    this.output.gain.value = 0;
 
-    this.output.connect(this.audiocontext.destination); 
+    this.output.connect(this.audiocontext.destination);
 
-    main.meter.connect(this._workletNode); 
+    main.meter.connect(this._workletNode);
 
     main.soundArray.push(this);
   }
@@ -3168,20 +3168,20 @@ function () {
 
       if (smoothing) {
         this._workletNode.parameters.get('smoothing').value = smoothing;
-      } 
+      }
 
 
       if (source == null) {
         console.log('Amplitude input source is not ready! Connecting to main output instead');
         main.meter.connect(this._workletNode);
-      } 
+      }
       else if (source) {
           source.connect(this._workletNode);
 
           this._workletNode.disconnect();
 
           this._workletNode.connect(this.output);
-        } 
+        }
         else {
             main.meter.connect(this._workletNode);
           }
@@ -3456,20 +3456,20 @@ function () {
         configurable: true,
         enumerable: true
       }
-    }); 
+    });
 
     this.smooth(smoothing);
-    this.bins = bins || 1024; 
+    this.bins = bins || 1024;
 
     main.fftMeter.connect(this.analyser);
     this.freqDomain = new Uint8Array(this.analyser.frequencyBinCount);
-    this.timeDomain = new Uint8Array(this.analyser.frequencyBinCount); 
+    this.timeDomain = new Uint8Array(this.analyser.frequencyBinCount);
 
     this.bass = [20, 140];
     this.lowMid = [140, 400];
     this.mid = [400, 2600];
     this.highMid = [2600, 5200];
-    this.treble = [5200, 14000]; 
+    this.treble = [5200, 14000];
 
     main.soundArray.push(this);
   }
@@ -3531,7 +3531,7 @@ function () {
         if (typeof arguments[i] === 'string') {
           mode = arguments[i];
         }
-      } 
+      }
 
 
       if (mode && !p5.prototype._isSafari()) {
@@ -3714,12 +3714,12 @@ function () {
         var lowIndex = Math.round(frequency1 / nyquist * this.freqDomain.length);
         var highIndex = Math.round(frequency2 / nyquist * this.freqDomain.length);
         var total = 0;
-        var numFrequencies = 0; 
+        var numFrequencies = 0;
 
         for (var i = lowIndex; i <= highIndex; i++) {
           total += this.freqDomain[i];
           numFrequencies += 1;
-        } 
+        }
 
 
         var toReturn = total / numFrequencies;
@@ -3727,7 +3727,7 @@ function () {
       } else {
         throw 'invalid input for getEnergy()';
       }
-    } 
+    }
 
   }, {
     key: "getFreq",
@@ -3867,17 +3867,17 @@ function () {
   }, {
     key: "linAverages",
     value: function linAverages(_N) {
-      var N = _N || 16; 
+      var N = _N || 16;
 
       var spectrum = this.freqDomain;
       var spectrumLength = spectrum.length;
       var spectrumStep = Math.floor(spectrumLength / N);
-      var linearAverages = new Array(N); 
+      var linearAverages = new Array(N);
 
       var groupIndex = 0;
 
       for (var specIndex = 0; specIndex < spectrumLength; specIndex++) {
-        linearAverages[groupIndex] = linearAverages[groupIndex] !== undefined ? (linearAverages[groupIndex] + spectrum[specIndex]) / 2 : spectrum[specIndex]; 
+        linearAverages[groupIndex] = linearAverages[groupIndex] !== undefined ? (linearAverages[groupIndex] + spectrum[specIndex]) / 2 : spectrum[specIndex];
 
         if (specIndex % spectrumStep === spectrumStep - 1) {
           groupIndex++;
@@ -3906,12 +3906,12 @@ function () {
       var nyquist = main.audiocontext.sampleRate / 2;
       var spectrum = this.freqDomain;
       var spectrumLength = spectrum.length;
-      var logAverages = new Array(octaveBands.length); 
+      var logAverages = new Array(octaveBands.length);
 
       var octaveIndex = 0;
 
       for (var specIndex = 0; specIndex < spectrumLength; specIndex++) {
-        var specIndexFrequency = Math.round(specIndex * nyquist / this.freqDomain.length); 
+        var specIndexFrequency = Math.round(specIndex * nyquist / this.freqDomain.length);
 
         if (specIndexFrequency > octaveBands[octaveIndex].hi) {
           octaveIndex++;
@@ -3940,9 +3940,9 @@ function () {
   }, {
     key: "getOctaveBands",
     value: function getOctaveBands(_N, _fCtr0) {
-      var N = _N || 3; 
+      var N = _N || 3;
 
-      var fCtr0 = _fCtr0 || 15.625; 
+      var fCtr0 = _fCtr0 || 15.625;
 
       var octaveBands = [];
       var lastFrequencyBand = {
@@ -3967,7 +3967,7 @@ function () {
   }]);
 
   return FFT;
-}(); 
+}();
 
 
 function freqToFloat(fft) {
@@ -4028,13 +4028,13 @@ function oscillator_createClass(Constructor, protoProps, staticProps) { if (prot
 
 
 function sigChain(o, mathObj, thisChain, nextChain, type) {
-  var chainSource = o.oscillator; 
+  var chainSource = o.oscillator;
 
   for (var i in o.mathOps) {
     if (o.mathOps[i] instanceof type) {
       chainSource.disconnect();
       o.mathOps[i].dispose();
-      thisChain = i; 
+      thisChain = i;
 
       if (thisChain < o.mathOps.length - 2) {
         nextChain = o.mathOps[i + 1];
@@ -4044,7 +4044,7 @@ function sigChain(o, mathObj, thisChain, nextChain, type) {
 
   if (thisChain === o.mathOps.length - 1) {
     o.mathOps.push(nextChain);
-  } 
+  }
 
 
   if (i > 0) {
@@ -4138,30 +4138,30 @@ function () {
       freq = _f;
     }
 
-    this.started = false; 
+    this.started = false;
 
     this.phaseAmount = undefined;
     this.oscillator = main.audiocontext.createOscillator();
-    this.f = freq || 440.0; 
+    this.f = freq || 440.0;
 
     this.oscillator.type = type || 'sine';
-    this.oscillator.frequency.setValueAtTime(this.f, main.audiocontext.currentTime); 
+    this.oscillator.frequency.setValueAtTime(this.f, main.audiocontext.currentTime);
 
     this.output = main.audiocontext.createGain();
-    this._freqMods = []; 
+    this._freqMods = [];
 
     this.output.gain.value = 0.5;
     this.output.gain.setValueAtTime(0.5, main.audiocontext.currentTime);
-    this.oscillator.connect(this.output); 
+    this.oscillator.connect(this.output);
 
     this.panPosition = 0.0;
-    this.connection = main.input; 
+    this.connection = main.input;
 
-    this.panner = new panner_0(this.output, this.connection, 1); 
+    this.panner = new panner_0(this.output, this.connection, 1);
 
-    this.mathOps = [this.output]; 
+    this.mathOps = [this.output];
 
-    main.soundArray.push(this); 
+    main.soundArray.push(this);
 
     this.fade = this.amp;
   }
@@ -4189,22 +4189,22 @@ function () {
 
       if (!this.started) {
         var freq = f || this.f;
-        var type = this.oscillator.type; 
+        var type = this.oscillator.type;
 
         if (this.oscillator) {
           this.oscillator.disconnect();
           delete this.oscillator;
-        } 
+        }
 
 
         this.oscillator = main.audiocontext.createOscillator();
         this.oscillator.frequency.value = Math.abs(freq);
-        this.oscillator.type = type; 
+        this.oscillator.type = type;
 
         this.oscillator.connect(this.output);
         time = time || 0;
         this.oscillator.start(time + main.audiocontext.currentTime);
-        this.freqNode = this.oscillator.frequency; 
+        this.freqNode = this.oscillator.frequency;
 
         for (var i in this._freqMods) {
           if (typeof this._freqMods[i].connect !== 'undefined') {
@@ -4339,7 +4339,7 @@ function () {
           } else {
             this.oscillator.frequency.linearRampToValueAtTime(val, tFromNow + rampTime + now);
           }
-        } 
+        }
 
 
         if (this.phaseAmount) {
@@ -4350,7 +4350,7 @@ function () {
           val = val.output;
         }
 
-        val.connect(this.oscillator.frequency); 
+        val.connect(this.oscillator.frequency);
 
         this._freqMods.push(val);
       } else {
@@ -4470,7 +4470,7 @@ function () {
     key: "getPan",
     value: function getPan() {
       return this.panPosition;
-    } 
+    }
 
   }, {
     key: "dispose",
@@ -4484,7 +4484,7 @@ function () {
         this.disconnect();
         this.panner = null;
         this.oscillator = null;
-      } 
+      }
 
 
       if (this.osc2) {
@@ -4509,12 +4509,12 @@ function () {
       this.phaseAmount = p;
 
       if (!this.dNode) {
-        this.dNode = main.audiocontext.createDelay(); 
+        this.dNode = main.audiocontext.createDelay();
 
         this.oscillator.disconnect();
         this.oscillator.connect(this.dNode);
         this.dNode.connect(this.output);
-      } 
+      }
 
 
       this.dNode.delayTime.setValueAtTime(delayAmt, now);
@@ -4581,9 +4581,9 @@ function () {
       var mapOutMin, mapOutMax;
 
       if (arguments.length === 4) {
-        mapOutMin = p5.prototype.map(outMin, inMin, inMax, 0, 1) - 0.5; 
+        mapOutMin = p5.prototype.map(outMin, inMin, inMax, 0, 1) - 0.5;
 
-        mapOutMax = p5.prototype.map(outMax, inMin, inMax, 0, 1) - 0.5; 
+        mapOutMax = p5.prototype.map(outMax, inMin, inMax, 0, 1) - 0.5;
       } else {
         mapOutMin = arguments[0];
         mapOutMax = arguments[1];
@@ -4592,12 +4592,12 @@ function () {
       var scale = new Scale_default.a(mapOutMin, mapOutMax);
       var thisChain = this.mathOps.length - 1;
       var nextChain = this.output;
-      return sigChain(this, scale, thisChain, nextChain, Scale_default.a); 
+      return sigChain(this, scale, thisChain, nextChain, Scale_default.a);
     }
   }]);
 
   return Oscillator;
-}(); 
+}();
 
 /**
  *  Constructor: <code>new p5.SinOsc()</code>.
@@ -4804,29 +4804,29 @@ p5.Envelope = function (t1, l1, t2, l2, t3, l3) {
   this.output = main.audiocontext.createGain();
   this.control = new TimelineSignal_default.a();
 
-  this._init(); 
+  this._init();
 
 
-  this.control.connect(this.output); 
+  this.control.connect(this.output);
 
-  this.connection = null; 
+  this.connection = null;
 
-  this.mathOps = [this.control]; 
+  this.mathOps = [this.control];
 
-  this.isExponential = false; 
+  this.isExponential = false;
 
-  this.sourceToClear = null; 
+  this.sourceToClear = null;
 
-  this.wasTriggered = false; 
+  this.wasTriggered = false;
 
   main.soundArray.push(this);
-}; 
+};
 
 
 p5.Envelope.prototype._init = function () {
   var now = main.audiocontext.currentTime;
   var t = now;
-  this.control.setTargetAtTime(0.00001, t, 0.001); 
+  this.control.setTargetAtTime(0.00001, t, 0.001);
 
   this._setRampAD(this.aTime, this.dTime);
 };
@@ -4888,7 +4888,7 @@ p5.Envelope.prototype.set = function (t1, l1, t2, l2, t3, l3) {
   this.dTime = t2 || 0;
   this.dLevel = l2 || 0;
   this.rTime = t3 || 0;
-  this.rLevel = l3 || 0; 
+  this.rLevel = l3 || 0;
 
   this._setRampAD(t1, t2);
 };
@@ -4953,11 +4953,11 @@ p5.Envelope.prototype.set = function (t1, l1, t2, l2, t3, l3) {
 
 p5.Envelope.prototype.setADSR = function (aTime, dTime, sPercent, rTime) {
   this.aTime = aTime;
-  this.dTime = dTime || 0; 
+  this.dTime = dTime || 0;
 
   this.sPercent = sPercent || 0;
   this.dLevel = typeof sPercent !== 'undefined' ? sPercent * (this.aLevel - this.rLevel) + this.rLevel : 0;
-  this.rTime = rTime || 0; 
+  this.rTime = rTime || 0;
 
   this._setRampAD(aTime, dTime);
 };
@@ -5008,26 +5008,26 @@ p5.Envelope.prototype.setADSR = function (aTime, dTime, sPercent, rTime) {
 
 p5.Envelope.prototype.setRange = function (aLevel, rLevel) {
   this.aLevel = aLevel || 1;
-  this.rLevel = rLevel || 0; 
-}; 
+  this.rLevel = rLevel || 0;
+};
 
 
 p5.Envelope.prototype._setRampAD = function (t1, t2) {
   this._rampAttackTime = this.checkExpInput(t1);
   this._rampDecayTime = this.checkExpInput(t2);
-  var TCDenominator = 1.0; 
+  var TCDenominator = 1.0;
 
   TCDenominator = Math.log(1.0 / this.checkExpInput(1.0 - this._rampHighPercentage));
   this._rampAttackTC = t1 / this.checkExpInput(TCDenominator);
   TCDenominator = Math.log(1.0 / this._rampLowPercentage);
   this._rampDecayTC = t2 / this.checkExpInput(TCDenominator);
-}; 
+};
 
 
 p5.Envelope.prototype.setRampPercentages = function (p1, p2) {
   this._rampHighPercentage = this.checkExpInput(p1);
   this._rampLowPercentage = this.checkExpInput(p2);
-  var TCDenominator = 1.0; 
+  var TCDenominator = 1.0;
 
   TCDenominator = Math.log(1.0 / this.checkExpInput(1.0 - this._rampHighPercentage));
   this._rampAttackTC = this._rampAttackTime / this.checkExpInput(TCDenominator);
@@ -5065,7 +5065,7 @@ p5.Envelope.prototype.setInput = function () {
 
 p5.Envelope.prototype.setExp = function (isExp) {
   this.isExponential = isExp;
-}; 
+};
 
 
 p5.Envelope.prototype.checkExpInput = function (value) {
@@ -5212,7 +5212,7 @@ p5.Envelope.prototype.triggerAttack = function (unit, secondsFromNow) {
     if (this.connection !== unit) {
       this.connect(unit);
     }
-  } 
+  }
 
 
   var valToSet = this.control.getValueAtTime(t);
@@ -5221,7 +5221,7 @@ p5.Envelope.prototype.triggerAttack = function (unit, secondsFromNow) {
     this.control.exponentialRampToValueAtTime(this.checkExpInput(valToSet), t);
   } else {
     this.control.linearRampToValueAtTime(valToSet, t);
-  } 
+  }
 
 
   t += this.aTime;
@@ -5236,7 +5236,7 @@ p5.Envelope.prototype.triggerAttack = function (unit, secondsFromNow) {
     valToSet = this.control.getValueAtTime(t);
     this.control.cancelScheduledValues(t);
     this.control.linearRampToValueAtTime(valToSet, t);
-  } 
+  }
 
 
   t += this.dTime;
@@ -5319,7 +5319,7 @@ p5.Envelope.prototype.triggerRelease = function (unit, secondsFromNow) {
     if (this.connection !== unit) {
       this.connect(unit);
     }
-  } 
+  }
 
 
   var valToSet = this.control.getValueAtTime(t);
@@ -5328,7 +5328,7 @@ p5.Envelope.prototype.triggerRelease = function (unit, secondsFromNow) {
     this.control.exponentialRampToValueAtTime(this.checkExpInput(valToSet), t);
   } else {
     this.control.linearRampToValueAtTime(valToSet, t);
-  } 
+  }
 
 
   t += this.rTime;
@@ -5406,39 +5406,39 @@ p5.Envelope.prototype.ramp = function (unit, secondsFromNow, v1, v2) {
   var tFromNow = secondsFromNow || 0;
   var t = now + tFromNow;
   var destination1 = this.checkExpInput(v1);
-  var destination2 = typeof v2 !== 'undefined' ? this.checkExpInput(v2) : undefined; 
+  var destination2 = typeof v2 !== 'undefined' ? this.checkExpInput(v2) : undefined;
 
   if (unit) {
     if (this.connection !== unit) {
       this.connect(unit);
     }
-  } 
+  }
 
 
-  var currentVal = this.checkExpInput(this.control.getValueAtTime(t)); 
+  var currentVal = this.checkExpInput(this.control.getValueAtTime(t));
 
   if (destination1 > currentVal) {
     this.control.setTargetAtTime(destination1, t, this._rampAttackTC);
     t += this._rampAttackTime;
-  } 
+  }
   else if (destination1 < currentVal) {
       this.control.setTargetAtTime(destination1, t, this._rampDecayTC);
       t += this._rampDecayTime;
-    } 
+    }
 
 
-  if (destination2 === undefined) return; 
+  if (destination2 === undefined) return;
 
   if (destination2 > destination1) {
     this.control.setTargetAtTime(destination2, t, this._rampAttackTC);
-  } 
+  }
   else if (destination2 < destination1) {
       this.control.setTargetAtTime(destination2, t, this._rampDecayTC);
     }
 };
 
 p5.Envelope.prototype.connect = function (unit) {
-  this.connection = unit; 
+  this.connection = unit;
 
   if (unit instanceof p5.Oscillator || unit instanceof p5.SoundFile || unit instanceof p5.AudioIn || unit instanceof p5.Reverb || unit instanceof p5.Noise || unit instanceof p5.Filter || unit instanceof p5.Delay) {
     unit = unit.output.gain;
@@ -5455,7 +5455,7 @@ p5.Envelope.prototype.disconnect = function () {
   if (this.output) {
     this.output.disconnect();
   }
-}; 
+};
 
 /**
  *  Add a value to the p5.Oscillator's output amplitude,
@@ -5516,7 +5516,7 @@ p5.Envelope.prototype.scale = function (inMin, inMax, outMin, outMax) {
   var thisChain = this.mathOps.length;
   var nextChain = this.output;
   return p5.prototype._mathChain(this, scale, thisChain, nextChain, Scale_default.a);
-}; 
+};
 
 
 p5.Envelope.prototype.dispose = function () {
@@ -5532,7 +5532,7 @@ p5.Envelope.prototype.dispose = function () {
   for (var i = 1; i < this.mathOps.length; i++) {
     this.mathOps[i].dispose();
   }
-}; 
+};
 
 
 p5.Env = function (t1, l1, t2, l2, t3, l3) {
@@ -5592,7 +5592,7 @@ var _pinkNoiseBuffer = function () {
     b4 = 0.55 * b4 + white * 0.5329522;
     b5 = -0.7616 * b5 - white * 0.016898;
     noiseData[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-    noiseData[i] *= 0.11; 
+    noiseData[i] *= 0.11;
 
     b6 = white * 0.115926;
   }
@@ -5722,7 +5722,7 @@ function (_Oscillator) {
   }, {
     key: "dispose",
     value: function dispose() {
-      var now = main.audiocontext.currentTime; 
+      var now = main.audiocontext.currentTime;
 
       var index = main.soundArray.indexOf(this);
       main.soundArray.splice(index, 1);
@@ -5830,32 +5830,32 @@ function (_Oscillator) {
 
     pulse_classCallCheck(this, Pulse);
 
-    _this = pulse_possibleConstructorReturn(this, pulse_getPrototypeOf(Pulse).call(this, freq, 'sawtooth')); 
+    _this = pulse_possibleConstructorReturn(this, pulse_getPrototypeOf(Pulse).call(this, freq, 'sawtooth'));
 
-    _this.w = w || 0; 
+    _this.w = w || 0;
 
-    _this.osc2 = new SawOsc(freq); 
+    _this.osc2 = new SawOsc(freq);
 
-    _this.dNode = main.audiocontext.createDelay(); 
+    _this.dNode = main.audiocontext.createDelay();
 
     _this.dcOffset = createDCOffset();
     _this.dcGain = main.audiocontext.createGain();
 
     _this.dcOffset.connect(_this.dcGain);
 
-    _this.dcGain.connect(_this.output); 
+    _this.dcGain.connect(_this.output);
 
 
     _this.f = freq || 440;
     var mW = _this.w / _this.oscillator.frequency.value;
     _this.dNode.delayTime.value = mW;
-    _this.dcGain.gain.value = 1.7 * (0.5 - _this.w); 
+    _this.dcGain.gain.value = 1.7 * (0.5 - _this.w);
 
     _this.osc2.disconnect();
 
     _this.osc2.panner.disconnect();
 
-    _this.osc2.amp(-1); 
+    _this.osc2.amp(-1);
 
 
     _this.osc2.output.connect(_this.dNode);
@@ -5883,7 +5883,7 @@ function (_Oscillator) {
     value: function width(w) {
       if (typeof w === 'number') {
         if (w <= 1.0 && w >= 0.0) {
-          this.w = w; 
+          this.w = w;
 
           var mW = this.w / this.oscillator.frequency.value;
           this.dNode.delayTime.value = mW;
@@ -5892,7 +5892,7 @@ function (_Oscillator) {
         this.dcGain.gain.value = 1.7 * (0.5 - this.w);
       } else {
         w.connect(this.dNode.delayTime);
-        var sig = new Signal_default.a(-0.5); 
+        var sig = new Signal_default.a(-0.5);
 
         w.connect(sig);
         var mult1 = new Multiply_default.a(-1);
@@ -5914,18 +5914,18 @@ function (_Oscillator) {
         this.oscillator.frequency.setValueAtTime(freq, now);
         this.oscillator.type = type;
         this.oscillator.connect(this.output);
-        this.oscillator.start(t + now); 
+        this.oscillator.start(t + now);
 
         this.osc2.oscillator = main.audiocontext.createOscillator();
         this.osc2.oscillator.frequency.setValueAtTime(freq, t + now);
         this.osc2.oscillator.type = type;
         this.osc2.oscillator.connect(this.osc2.output);
         this.osc2.start(t + now);
-        this.freqNode = [this.oscillator.frequency, this.osc2.oscillator.frequency]; 
+        this.freqNode = [this.oscillator.frequency, this.osc2.oscillator.frequency];
 
         this.dcOffset = createDCOffset();
         this.dcOffset.connect(this.dcGain);
-        this.dcOffset.start(t + now); 
+        this.dcOffset.start(t + now);
 
         if (this.mods !== undefined && this.mods.frequency !== undefined) {
           this.mods.frequency.connect(this.freqNode[0]);
@@ -5984,7 +5984,7 @@ function (_Oscillator) {
   }]);
 
   return Pulse;
-}(oscillator); 
+}(oscillator);
 
 
 function createDCOffset() {
@@ -6106,7 +6106,7 @@ function () {
 
     if (!window.MediaStreamTrack || !window.navigator.mediaDevices || !window.navigator.mediaDevices.getUserMedia) {
       errorCallback ? errorCallback() : window.alert('This browser does not support MediaStreamTrack and mediaDevices');
-    } 
+    }
 
 
     main.soundArray.push(this);
@@ -6140,7 +6140,7 @@ function () {
 
       if (this.stream) {
         this.stop();
-      } 
+      }
 
 
       var audioSource = main.inputSources[self.currentSource];
@@ -6149,7 +6149,7 @@ function () {
           sampleRate: main.audiocontext.sampleRate,
           echoCancellation: false
         }
-      }; 
+      };
 
       if (main.inputSources[this.currentSource]) {
         constraints.audio.deviceId = audioSource.deviceId;
@@ -6157,10 +6157,10 @@ function () {
 
       window.navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
         self.stream = stream;
-        self.enabled = true; 
+        self.enabled = true;
 
         self.mediaStream = main.audiocontext.createMediaStreamSource(stream);
-        self.mediaStream.connect(self.output); 
+        self.mediaStream.connect(self.output);
 
         self.amplitude.setInput(self.output);
         if (successCallback) successCallback();
@@ -6226,7 +6226,7 @@ function () {
     key: "disconnect",
     value: function disconnect() {
       if (this.output) {
-        this.output.disconnect(); 
+        this.output.disconnect();
 
         this.output.connect(this.amplitude.input);
       }
@@ -6377,13 +6377,13 @@ function () {
         console.log('set source to ', main.inputSources[this.currentSource]);
       } else {
         console.log('unable to set input source');
-      } 
+      }
 
 
       if (this.stream && this.stream.active) {
         this.start();
       }
-    } 
+    }
 
   }, {
     key: "dispose",
@@ -6471,7 +6471,7 @@ function () {
 
     this._drywet.connect(this.output);
 
-    this.connect(); 
+    this.connect();
 
     main.soundArray.push(this);
   }
@@ -6714,7 +6714,7 @@ function (_Effect) {
 
     filter_classCallCheck(this, Filter);
 
-    _this = filter_possibleConstructorReturn(this, filter_getPrototypeOf(Filter).call(this)); 
+    _this = filter_possibleConstructorReturn(this, filter_getPrototypeOf(Filter).call(this));
 
     /**
      *  The p5.Filter is built with a
@@ -6732,7 +6732,7 @@ function (_Effect) {
 
     if (type) {
       _this.setType(type);
-    } 
+    }
 
 
     _this._on = true;
@@ -7190,7 +7190,7 @@ function (_Effect) {
 
     eq_classCallCheck(this, EQ);
 
-    _this = eq_possibleConstructorReturn(this, eq_getPrototypeOf(EQ).call(this)); 
+    _this = eq_possibleConstructorReturn(this, eq_getPrototypeOf(EQ).call(this));
 
     _eqsize = _eqsize === 3 || _eqsize === 8 ? _eqsize : 3;
     var factor;
@@ -7247,7 +7247,7 @@ function (_Effect) {
     key: "process",
     value: function process(src) {
       src.connect(this.input);
-    } 
+    }
     //   * Set the frequency and gain of each band in the EQ. This method should be
     //   * called with 3 or 8 frequency and gain pairs, depending on the size of the EQ.
     //   * ex. eq.set(freq0, gain0, freq1, gain1, freq2, gain2);
@@ -7356,7 +7356,7 @@ function () {
 
     this.ac = main.audiocontext;
     this.listener = this.ac.listener;
-  } 
+  }
   //   * Connect an audio sorce
   //   * @param  {Object} src Input source
   //   */
@@ -7366,7 +7366,7 @@ function () {
     key: "process",
     value: function process(src) {
       src.connect(this.input);
-    } 
+    }
     //   * Set the X,Y,Z position of the Panner
     //   * @param  {[Number]} xVal
     //   * @param  {[Number]} yVal
@@ -7382,7 +7382,7 @@ function () {
       this.positionY(yVal, time);
       this.positionZ(zVal, time);
       return [this.listener.positionX.value, this.listener.positionY.value, this.listener.positionZ.value];
-    } 
+    }
     //   * Getter and setter methods for position coordinates
     //   * @return {Number}      [updated coordinate value]
     //   */
@@ -7431,7 +7431,7 @@ function () {
       }
 
       return this.listener.positionZ.value;
-    } 
+    }
     //   * Overrides the listener orient() method because Listener has slightly
     //   * different params. In human terms, Forward vectors are the direction the
     //   * nose is pointing. Up vectors are the direction of the top of the head.
@@ -7475,7 +7475,7 @@ function () {
       this.upY(yValU, time);
       this.upZ(zValU, time);
       return [this.listener.upX, this.listener.upY, this.listener.upZ];
-    } 
+    }
     //   * Getter and setter methods for orient coordinates
     //   * @return {Number}      [updated coordinate value]
     //   */
@@ -8018,7 +8018,7 @@ function (_Effect) {
 
     _this._leftFilter.biquad.Q.setValueAtTime(0.3, _this.ac.currentTime);
 
-    _this._rightFilter.biquad.Q.setValueAtTime(0.3, _this.ac.currentTime); 
+    _this._rightFilter.biquad.Q.setValueAtTime(0.3, _this.ac.currentTime);
 
 
     _this.input.connect(_this._split);
@@ -8035,12 +8035,12 @@ function (_Effect) {
 
     _this._leftFilter.biquad.gain.setValueAtTime(1, _this.ac.currentTime);
 
-    _this._rightFilter.biquad.gain.setValueAtTime(1, _this.ac.currentTime); 
+    _this._rightFilter.biquad.gain.setValueAtTime(1, _this.ac.currentTime);
 
 
     _this.setType(0);
 
-    _this._maxDelay = _this.leftDelay.delayTime.maxValue; 
+    _this._maxDelay = _this.leftDelay.delayTime.maxValue;
 
     _this.feedback(0.5);
 
@@ -8140,7 +8140,7 @@ function (_Effect) {
       } else if (typeof f === 'number') {
         this._leftGain.gain.value = f;
         this._rightGain.gain.value = f;
-      } 
+      }
 
 
       return this._leftGain.gain.value;
@@ -8218,7 +8218,7 @@ function (_Effect) {
           this._rightFilter.output.connect(this.rightDelay);
 
       }
-    } 
+    }
 
     /**
      *  Set the output level of the delay effect.
@@ -8368,10 +8368,10 @@ function (_Effect) {
 
     _this = reverb_possibleConstructorReturn(this, reverb_getPrototypeOf(Reverb).call(this));
 
-    _this._initConvolverNode(); 
+    _this._initConvolverNode();
 
 
-    _this.input.gain.value = 0.5; 
+    _this.input.gain.value = 0.5;
 
     _this._seconds = 3;
     _this._decay = 2;
@@ -8477,7 +8477,7 @@ function (_Effect) {
       if (rebuild) {
         this._buildImpulse();
       }
-    } 
+    }
 
     /**
      *  Set the output level of the reverb effect.
@@ -8544,7 +8544,7 @@ function (_Effect) {
   }]);
 
   return Reverb;
-}(effect); 
+}(effect);
 
 /**
  *  <p>p5.Convolver extends p5.Reverb. It can emulate the sound of real
@@ -8626,7 +8626,7 @@ function (_Reverb) {
      *  @property {ConvolverNode} convolverNode
      */
 
-    _this2._initConvolverNode(); 
+    _this2._initConvolverNode();
 
 
     _this2.input.gain.value = 0.5;
@@ -8693,7 +8693,7 @@ function (_Reverb) {
             if (callback) {
               callback(buffer);
             }
-          }, 
+          },
           function () {
             var err = new errorHandler('decodeAudioData', errorTrace, self.url);
             var msg = 'AudioContext error at decodeAudioData for ' + self.url;
@@ -8705,7 +8705,7 @@ function (_Reverb) {
               console.error(msg + '\n The error stack trace includes: \n' + err.stack);
             }
           });
-        } 
+        }
         else {
             var err = new errorHandler('loadConvolver', errorTrace, self.url);
             var msg = 'Unable to load ' + self.url + '. The request status was: ' + request.status + ' (' + request.statusText + ')';
@@ -8717,7 +8717,7 @@ function (_Reverb) {
               console.error(msg + '\n The error stack trace includes: \n' + err.stack);
             }
           }
-      }; 
+      };
 
 
       request.onerror = function () {
@@ -8869,7 +8869,7 @@ function (_Reverb) {
   }, {
     key: "dispose",
     value: function dispose() {
-      reverb_get(reverb_getPrototypeOf(Convolver.prototype), "dispose", this).call(this); 
+      reverb_get(reverb_getPrototypeOf(Convolver.prototype), "dispose", this).call(this);
 
 
       for (var i in this.impulses) {
@@ -8974,7 +8974,7 @@ function () {
       callback: this.ontick.bind(this)
     });
     this.syncedParts = [];
-    this.bpm = 120; 
+    this.bpm = 120;
 
     this._init();
 
@@ -8993,12 +8993,12 @@ function () {
       if (elapsedTime - this.tatumTime <= -0.02) {
         return;
       } else {
-        this.prevTick = tickTime; 
+        this.prevTick = tickTime;
 
         var self = this;
         this.syncedParts.forEach(function (thisPart) {
           if (!thisPart.isPlaying) return;
-          thisPart.incrementStep(secondsFromNow); 
+          thisPart.incrementStep(secondsFromNow);
 
           thisPart.phrases.forEach(function (thisPhrase) {
             var phraseArray = thisPhrase.sequence;
@@ -9032,14 +9032,14 @@ function () {
   }, {
     key: "_init",
     value: function _init() {
-      this.metroTicks = 0; 
-    } 
+      this.metroTicks = 0;
+    }
 
   }, {
     key: "resetSync",
     value: function resetSync(part) {
       this.syncedParts = [part];
-    } 
+    }
 
   }, {
     key: "pushSync",
@@ -9064,7 +9064,7 @@ function () {
   }, {
     key: "beatLength",
     value: function beatLength(tatums) {
-      this.tatums = 1 / tatums / 4; 
+      this.tatums = 1 / tatums / 4;
     }
   }]);
 
@@ -9242,13 +9242,13 @@ function () {
   function Part(steps, bLength) {
     looper_classCallCheck(this, Part);
 
-    this.length = steps || 0; 
+    this.length = steps || 0;
 
     this.partStep = 0;
     this.phrases = [];
     this.isPlaying = false;
     this.noLoop();
-    this.tatums = bLength || 0.0625; 
+    this.tatums = bLength || 0.0625;
 
     this.metro = new metro();
 
@@ -9321,7 +9321,7 @@ function () {
   }, {
     key: "loop",
     value: function loop(time) {
-      this.looping = true; 
+      this.looping = true;
 
       this.onended = function () {
         this.partStep = 0;
@@ -9340,7 +9340,7 @@ function () {
   }, {
     key: "noLoop",
     value: function noLoop() {
-      this.looping = false; 
+      this.looping = false;
 
       this.onended = function () {
         this.stop();
@@ -9397,7 +9397,7 @@ function () {
         throw 'invalid input. addPhrase accepts name, callback, array or a p5.Phrase';
       }
 
-      this.phrases.push(p); 
+      this.phrases.push(p);
 
       if (p.sequence.length > this.length) {
         this.length = p.sequence.length;
@@ -9488,7 +9488,7 @@ function () {
   }]);
 
   return Part;
-}(); 
+}();
 
 /**
  *  A Score consists of a series of Parts. The parts will
@@ -9948,7 +9948,7 @@ function () {
       if (typeof this._interval === 'number') {
         this.musicalTimeMode = false;
         return 1 / this._interval;
-      } 
+      }
       else if (typeof this._interval === 'string') {
           this.musicalTimeMode = true;
           return this._bpm / 60 / this._convertNotation(this._interval) * (this._timeSignature / 4);
@@ -10409,11 +10409,11 @@ function () {
     this.framesSinceLastPeak = 0;
     this.decayRate = 0.95;
     this.threshold = threshold || 0.35;
-    this.cutoff = 0; 
+    this.cutoff = 0;
 
     this.cutoffMult = 1.5;
     this.energy = 0;
-    this.penergy = 0; 
+    this.penergy = 0;
 
     this.currentValue = 0;
     /**
@@ -10425,7 +10425,7 @@ function () {
 
     this.isDetected = false;
     this.f1 = freq1 || 40;
-    this.f2 = freq2 || 20000; 
+    this.f2 = freq2 || 20000;
 
     this._onPeak = function () {};
   }
@@ -10449,7 +10449,7 @@ function () {
       if (nrg > this.cutoff && nrg > this.threshold && nrg - this.penergy > 0) {
         this._onPeak();
 
-        this.isDetected = true; 
+        this.isDetected = true;
 
         this.cutoff = nrg * this.cutoffMult;
         this.framesSinceLastPeak = 0;
@@ -10639,7 +10639,7 @@ function () {
     this.input = soundRecorder_ac.createGain();
     this.output = soundRecorder_ac.createGain();
     this._inputChannels = 2;
-    this._outputChannels = 2; 
+    this._outputChannels = 2;
 
     var workletBufferSize = safeBufferSize(1024);
     this._workletNode = new AudioWorkletNode(soundRecorder_ac, processorNames_default.a.recorderProcessor, {
@@ -10664,12 +10664,12 @@ function () {
      */
 
 
-    this._callback = function () {}; 
+    this._callback = function () {};
 
 
     this._workletNode.connect(p5.soundOut._silentNode);
 
-    this.setInput(); 
+    this.setInput();
 
     main.soundArray.push(this);
   }
@@ -11045,10 +11045,10 @@ function () {
 
     this.ac = main.audiocontext;
     this.input = this.ac.createGain();
-    this.output = this.ac.createGain(); 
+    this.output = this.ac.createGain();
 
     this.input.gain.value = 0.5;
-    this.input.connect(this.output); 
+    this.input.connect(this.output);
 
     main.soundArray.push(this);
   }
@@ -11293,14 +11293,14 @@ function (_AudioVoice) {
 
     _this = monosynth_possibleConstructorReturn(this, monosynth_getPrototypeOf(MonoSynth).call(this));
     _this.oscillator = new oscillator();
-    _this.env = new envelope(); 
+    _this.env = new envelope();
 
     _this.env.setRange(1, 0);
 
-    _this.env.setExp(true); 
+    _this.env.setExp(true);
 
 
-    _this.setADSR(0.02, 0.25, 0.05, 0.35); 
+    _this.setADSR(0.02, 0.25, 0.05, 0.35);
 
 
     _this.oscillator.disconnect();
@@ -11309,7 +11309,7 @@ function (_AudioVoice) {
 
     _this.env.disconnect();
 
-    _this.env.setInput(_this.output.gain); 
+    _this.env.setInput(_this.output.gain);
 
 
     _this.oscillator.output.gain.value = 1.0;
@@ -11642,11 +11642,11 @@ function () {
     this.freqHigh = freqHigh;
     this.treshold = threshold;
     this.energy = 0;
-    this.penergy = 0; 
+    this.penergy = 0;
 
     this.sensitivity = 500;
     this.callback = callback;
-  } 
+  }
 
 
   onsetDetect_createClass(OnsetDetect, [{
@@ -11748,7 +11748,7 @@ function () {
      * @property notes
      */
 
-    this.notes = {}; 
+    this.notes = {};
 
     this._newest = 0;
     this._oldest = 0;
@@ -11774,7 +11774,7 @@ function () {
 
     this._voicesInUse = new TimelineSignal_default.a(0);
     this.output = main.audiocontext.createGain();
-    this.connect(); 
+    this.connect();
 
     this._allocateVoices();
 
@@ -11950,44 +11950,44 @@ function () {
     key: "noteAttack",
     value: function noteAttack(_note, _velocity) {
       var secondsFromNow = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-      var acTime = main.audiocontext.currentTime + secondsFromNow; 
+      var acTime = main.audiocontext.currentTime + secondsFromNow;
 
       var note = noteToFreq(_note);
       var velocity = _velocity || 0.1;
-      var currentVoice; 
+      var currentVoice;
 
       if (this.notes[note] && this.notes[note].getValueAtTime(acTime) !== null) {
         this.noteRelease(note, 0);
-      } 
+      }
 
 
       if (this._voicesInUse.getValueAtTime(acTime) < this.maxVoices) {
         currentVoice = Math.max(~~this._voicesInUse.getValueAtTime(acTime), 0);
-      } 
+      }
       else {
           currentVoice = this._oldest;
           oldestNote = freqToMidi(this.audiovoices[this._oldest].oscillator.freq().value);
           this.noteRelease(oldestNote);
           this._oldest = (this._oldest + 1) % (this.maxVoices - 1);
-        } 
+        }
 
 
       this.notes[note] = new TimelineSignal_default.a();
-      this.notes[note].setValueAtTime(currentVoice, acTime); 
+      this.notes[note].setValueAtTime(currentVoice, acTime);
 
       var previousVal = this._voicesInUse._searchBefore(acTime) === null ? 0 : this._voicesInUse._searchBefore(acTime).value;
 
-      this._voicesInUse.setValueAtTime(previousVal + 1, acTime); 
+      this._voicesInUse.setValueAtTime(previousVal + 1, acTime);
 
 
       this._updateAfter(acTime, 1);
 
-      this._newest = currentVoice; 
+      this._newest = currentVoice;
 
       if (typeof velocity === 'number') {
         var maxRange = 1 / this._voicesInUse.getValueAtTime(acTime) * 2;
         velocity = velocity > maxRange ? maxRange : velocity;
-      } 
+      }
 
 
       this.audiovoices[currentVoice].triggerAttack(note, velocity, secondsFromNow);
@@ -12064,7 +12064,7 @@ function () {
     value: function noteRelease(_note, secondsFromNow) {
       var now = main.audiocontext.currentTime;
       var tFromNow = secondsFromNow || 0;
-      var t = now + tFromNow; 
+      var t = now + tFromNow;
 
       if (!_note) {
         this.audiovoices.forEach(function (voice) {
@@ -12079,7 +12079,7 @@ function () {
         }
 
         return;
-      } 
+      }
 
 
       var note = noteToFreq(_note);
@@ -12089,7 +12089,7 @@ function () {
       } else {
         var previousVal = Math.max(~~this._voicesInUse.getValueAtTime(t).value, 1);
 
-        this._voicesInUse.setValueAtTime(previousVal - 1, t); 
+        this._voicesInUse.setValueAtTime(previousVal - 1, t);
 
 
         if (previousVal > 0) {
@@ -12183,7 +12183,7 @@ p5.prototype.convertToWav = convertToWav;
 p5.prototype.interleave = interleave;
 p5.prototype.writeUTFBytes = writeUTFBytes;
 p5.prototype.safeBufferSize = safeBufferSize;
-p5.prototype.saveSound = saveSound; 
+p5.prototype.saveSound = saveSound;
 
 p5.prototype.registerMethod('remove', p5.prototype.disposeSound);
 
@@ -12192,7 +12192,7 @@ p5.prototype.registerMethod('remove', p5.prototype.disposeSound);
 p5.Panner = panner_0;
 
 p5.SoundFile = soundfile;
-p5.prototype.loadSound = loadSound; 
+p5.prototype.loadSound = loadSound;
 
 p5.prototype.registerPreloadMethod('loadSound', p5.prototype);
 
@@ -12259,7 +12259,7 @@ p5.OnsetDetect = onsetDetect;
 
 p5.PolySynth = polysynth;
 
-p5.PeakDetect = peakDetect; 
+p5.PeakDetect = peakDetect;
 
 
 p5.Signal = deprecations_Signal;
