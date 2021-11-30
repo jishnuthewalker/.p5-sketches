@@ -6,6 +6,6 @@ function setup() {
 function draw() {
   background(255);
   fill('teal');
-  noStroke()
+  noStroke();
   square(width/2, height/2, 100);
 }
