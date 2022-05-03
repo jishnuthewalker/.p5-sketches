@@ -1,11 +1,24 @@
 let checkbox;
+let bg = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   checkbox = createCheckbox('draw mode', false);
+  checkbox.changed(switchValue);
   strokeWeight(4);
 //  background(0);
 }
+
+function switchValue() {
+  if (checkbox.checked()) {
+    console.log('checkin!');
+    bg = 1;
+  } else {
+    console.log('uncheckin!');
+    bg = 0;
+  }
+}
+
 
 function draw() {
 /*
@@ -16,8 +29,9 @@ function draw() {
     box = 255;
   }
 */
-  background(0, 0, 0);
-
+    if (bg === 0) {
+    background(0, 0, 0);
+  }
 
 
   //while loop test
@@ -51,7 +65,7 @@ function draw() {
   } */
 
   border = 100;
-  spacing = 200;
+  spacing = 100;
   diam = 5;
   colourR = 255 - (((mouseY/windowWidth)) * 255);
   colourG = 255 - (((mouseX/windowHeight)) * 255);
