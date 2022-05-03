@@ -7,8 +7,8 @@ let PALETTE = [];
 
 function setup() {
 
-  var button = createButton("reset");
-  button.mousePressed(resetSketch)
+  // var button = createButton("reset");
+  // button.mousePressed(resetSketch)
   createCanvas(windowWidth, windowHeight, SVG);
   noLoop();
   angleMode(DEGREES);
@@ -22,7 +22,12 @@ function setup() {
 
 }
 
-function resetSketch() {
+// function resetSketch() {
+//   background(255)
+//   draw()
+// }
+
+function mouseClicked() {
   background(255)
   draw()
 }
