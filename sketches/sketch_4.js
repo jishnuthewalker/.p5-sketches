@@ -1,5 +1,5 @@
 
-const CRYSTAL_SIZE = 300;
+const CRYSTAL_SIZE = 30;
 const SIDES = 6;
 let PALETTE = [];
 
@@ -21,11 +21,13 @@ function setup() {
 }
 
 function draw() {
-//  testLines();
+  noFill();
+  // testLines();
 
 
-  // hexagon(width/2, height/2, CRYSTAL_SIZE);
+  // hexagon(width/2, height/2, CRYSTAL_SIZE/2);
   outlineShape();
+  simpleLines();
 
 }
 
@@ -38,9 +40,9 @@ function outlineShape() {
   stroke(strokeColor);
   strokeWeight(weight);
   push();
-  translate(width/2,height/2);
+  translate(width/2, height/2);
   if (hexTrue) {
-    hexagon(0,0, CRYSTAL_SIZE/2);
+    hexagon(0, 0, CRYSTAL_SIZE/2);
   }
   else {
     ellipse(0,0,CRYSTAL_SIZE,CRYSTAL_SIZE);
@@ -65,55 +67,33 @@ function testLines() {
    stroke(getRandomFromPalette());
    const angle = 360 / numShapes;
    for (i = 0; i < numShapes; i++) {
-     line(0,0,CRYSTAL_SIZE/2,0);
+     line(0, 0, CRYSTAL_SIZE/2, 0);
      rotate(angle);
    }
   pop();
 }
 
 
-function randomSelectTwo() {
-  const rando = random(1) > 0.5 ? true : false;
-  console.log(rando);
-  return(rando);
+function simpleLines() {
+  const stepOut = 8;
+  steps = randomSelectTwo() ? stepOut : int(stepOut*1.25);
+  const stepSize = (CRYSTAL_SIZE / 2) / steps;
+  const start = floor(random(0, steps));
+  const stop = floor(random(start, steps + 1))
 
-}
-
-
-function getRandomFromPalette() {
-   const rando2 = floor(random(0, PALETTE.length));
-   console.log(rando2);
-   return PALETTE[rando2];
-}
-
-function pointOnCircle(posX, posY, radius, angle) {
-  const x = posX + radius * cos(angle);
-  const y = posY + radius * sin(angle);
-  console.log(angle)
-  return createVector(x, y)
-}
+  let numShapes = randomSelectTwo() ? SIDES : SIDES * 2;
+  const strokeColor = getRandomFromPalette();
+  const weight = randomSelectTwo() ? 1 : 3;
+  const angle = 360 / numShapes;
 
 
-function hexagon(posX, posY, radius) {
-  const rotAngle = 360/6;
-
+  stroke(strokeColor);
+  strokeWeight(weight);
   push();
-  beginShape()
-  for (let i = 0; i < 6; i++) {
-    const thisVert = pointOnCircle(posX, posY, radius, i * rotAngle);
-    vertex(thisVert.x, thisVert.y);
-    console.log(i);
-  }
-  endShape(CLOSE);
-  pop();
-
-  push();
-  translate(20, 20)
-  beginShape();
-  vertex(30, 20);
-  vertex(85, 20);
-  vertex(85, 75);
-  vertex(30, 75);
-  endShape(CLOSE);
+    translate(width/2, height/2);
+    for (let i = 0; i < numShapes; i++) {
+      line(start * steps, 0, stop * steps, 0);
+      rotate(angle);
+    }
   pop();
 }
