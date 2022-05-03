@@ -7,6 +7,8 @@ let PALETTE = [];
 
 function setup() {
 
+  var button = createButton("reset");
+  button.mousePressed(resetSketch)
   createCanvas(windowWidth, windowHeight, SVG);
   noLoop();
   angleMode(DEGREES);
@@ -18,6 +20,11 @@ function setup() {
     'limegreen'
   ]
 
+}
+
+function resetSketch() {
+  background(255)
+  draw()
 }
 
 function draw() {
