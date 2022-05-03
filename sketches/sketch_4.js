@@ -22,20 +22,29 @@ function setup() {
 
 function draw() {
 //  testLines();
+
+
+  // hexagon(width/2, height/2, CRYSTAL_SIZE);
   outlineShape();
+
 }
 
 function outlineShape() {
 
   const strokeColor = getRandomFromPalette();
   const weight = randomSelectTwo() ? 1 : 3;
+  const hexTrue = randomSelectTwo();
 
   stroke(strokeColor);
   strokeWeight(weight);
   push();
   translate(width/2,height/2);
-  rotate(0);
-  ellipse(0,0,CRYSTAL_SIZE,CRYSTAL_SIZE);
+  if (hexTrue) {
+    hexagon(0,0, CRYSTAL_SIZE/2);
+  }
+  else {
+    ellipse(0,0,CRYSTAL_SIZE,CRYSTAL_SIZE);
+  }
   pop();
 }
 
@@ -75,4 +84,36 @@ function getRandomFromPalette() {
    const rando2 = floor(random(0, PALETTE.length));
    console.log(rando2);
    return PALETTE[rando2];
+}
+
+function pointOnCircle(posX, posY, radius, angle) {
+  const x = posX + radius * cos(angle);
+  const y = posY + radius * sin(angle);
+  console.log(angle)
+  return createVector(x, y)
+}
+
+
+function hexagon(posX, posY, radius) {
+  const rotAngle = 360/6;
+
+  push();
+  beginShape()
+  for (let i = 0; i < 6; i++) {
+    const thisVert = pointOnCircle(posX, posY, radius, i * rotAngle);
+    vertex(thisVert.x, thisVert.y);
+    console.log(i);
+  }
+  endShape(CLOSE);
+  pop();
+
+  push();
+  translate(20, 20)
+  beginShape();
+  vertex(30, 20);
+  vertex(85, 20);
+  vertex(85, 75);
+  vertex(30, 75);
+  endShape(CLOSE);
+  pop();
 }
