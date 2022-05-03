@@ -10,7 +10,8 @@ function hexagon(posX, posY, radius) {
   const rotAngle = 360/6;
 
   push();
-  beginShape()
+  noFill();
+  beginShape();
   for (let i = 0; i < 6; i++) {
     const thisVert = pointOnCircle(posX, posY, radius, i * rotAngle);
     vertex(thisVert.x, thisVert.y);

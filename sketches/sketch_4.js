@@ -21,15 +21,19 @@ function setup() {
     color(4, 0, 125),
     'limegreen'
   ]
-
-}
+  }
 
 // function resetSketch() {
 //   background(255)
 //   draw()
 // }
 
-function mouseClicked() {
+// function mouseClicked() {
+//   background(255)
+//   draw()
+// }
+
+function touchStarted() {
   background(255)
   draw()
 }
