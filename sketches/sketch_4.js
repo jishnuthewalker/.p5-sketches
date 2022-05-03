@@ -2,6 +2,7 @@
 const CRYSTAL_SIZE = 30;
 const SIDES = 6;
 let PALETTE = [];
+let touchTest = 1;
 
 
 
@@ -31,11 +32,17 @@ function resetSketch() {
 function mouseClicked() {
   background(255)
   draw()
+  touchTest = 0;
 }
 
 function touchStarted() {
+  if (touchTest === 1) {
   background(255)
   draw()
+  }
+  else {
+    return("no touch")
+  }
 }
 
 function draw() {
