@@ -14,7 +14,7 @@ function setup() {
   angleMode(DEGREES);
   rectMode(CENTER);
   textSize(32);
-  text('TAP TO CHANGE', 10, 30);
+  text('TAP/refresh TO CHANGE', 10, 30);
 
   PALETTE = [
     color(255, 200, 200),
