@@ -13,6 +13,8 @@ function setup() {
   noLoop();
   angleMode(DEGREES);
   rectMode(CENTER);
+  textSize(32);
+  text('TAP TO CHANGE', 10, 30);
 
   PALETTE = [
     color(255, 200, 200),
