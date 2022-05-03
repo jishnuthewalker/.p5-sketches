@@ -3,7 +3,7 @@ let bg = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  checkbox = createCheckbox('draw mode', false);
+  checkbox = createCheckbox('draw mode', true);
   checkbox.changed(switchValue);
   strokeWeight(4);
 //  background(0);
@@ -12,24 +12,16 @@ function setup() {
 function switchValue() {
   if (checkbox.checked()) {
     console.log('checkin!');
-    bg = 1;
+    bg = 0;
   } else {
     console.log('uncheckin!');
-    bg = 0;
+    bg = 1;
   }
 }
 
 
 function draw() {
-/*
-  checkbox.changed(tick);
-  box = 0;
-
-  function tick() {
-    box = 255;
-  }
-*/
-    if (bg === 0) {
+    if (bg === 1) {
     background(0, 0, 0);
   }
 
@@ -67,8 +59,8 @@ function draw() {
   border = 100;
   spacing = 100;
   diam = 5;
-  colourR = 255 - (((mouseY/windowWidth)) * 255);
-  colourG = 255 - (((mouseX/windowHeight)) * 255);
+  colourR = 255 - (((mouseX/windowWidth)) * 255);
+  colourG = 255 - (((mouseY/windowHeight)) * 255);
   colourB = 255 - (((colourG + colourR)) / 2);
   fill(255);
   strokeWeight(1);
