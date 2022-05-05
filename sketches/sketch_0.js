@@ -59,9 +59,12 @@ function draw() {
   border = 100;
   spacing = 100;
   diam = 5;
+  // push();
+  // translate(width/2, height/2)
   colourR = ((((mouseX/0.5)/windowWidth)) * 255);
   colourG = ((((mouseY/0.5)/windowHeight)) * 255);
   colourB = 255 - (((colourG + colourR)) / 2);
+  // pop();
   fill(255);
   strokeWeight(1);
   stroke(colourR, colourG, colourB);
