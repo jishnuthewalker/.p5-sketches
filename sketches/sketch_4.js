@@ -1,4 +1,4 @@
-
+//
 const CRYSTAL_SIZE = 300;
 const SIDES = 6;
 let PALETTE = [];
@@ -55,8 +55,14 @@ function draw() {
     layers.push(new SimpleLines());
   }
 
+  picker = random(1);
+  if (picker < 0.5) {
+    layers.push(new NestedShapes());
+  }
 
 
+
+  // let layers = [];
   layers.forEach((layer) => {
     layer.render()
   });
@@ -75,8 +81,7 @@ function draw() {
 
 function resetSketch() {
   // background(255)
-  layers = [];
-  layers.length = 0;
+
   draw()
 }
 

@@ -90,3 +90,33 @@ class OutlineShape extends Layer {
   }
 
 }
+
+class NestedShapes extends Layer {
+  constructor() {
+    super();
+    this.nestNum = int(random(this.stepsOut));
+    this.nestSize = this.nestNum * this.stepSize;
+    this.hexTrue = randomSelectTwo();
+  }
+
+  render() {
+    push();
+      stroke(this.strokeColor);
+      strokeWeight(this.weight);
+      translate(width/2, height/2);
+      for (let i = 0; i < this.nestNum; i++) {
+      if (this.hexTrue) {
+        hexagon(0, 0, this.nestSize);
+        this.nestSize = this.nestSize - this.stepSize;
+        console.log("hex");
+      }
+      else {
+        this.diam = this.nestSize * 2
+        ellipse(0, 0, this.diam, this.diam)
+        this.nestSize = this.nestSize - this.stepSize;
+        console.log("circle");
+      }
+    }
+    pop();
+  }
+}
