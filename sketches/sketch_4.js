@@ -82,7 +82,7 @@ function draw() {
 function resetSketch() {
   // background(255)
 
-  draw()
+  clear()
 }
 
 function mouseClicked() {
