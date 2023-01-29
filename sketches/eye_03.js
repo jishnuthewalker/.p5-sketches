@@ -22,9 +22,9 @@ function eye(xpos, ypos, rad) {
   ang = atan2(mouseY-ypos,mouseX-xpos);
   dis = dist(x + xpos, y + ypos, mouseX, mouseY)
   pupD =  rad/2;
-  pupd = map(dis, pupD, 0, pupD*2/5, pupD, true);
+  pupd = map(dis, pupD, 0, pupD*1/3, pupD, true);
   eyeD = pupD/2;
-  eyed = map(dis, pupD, 0, eyeD*2/5, eyeD, true);
+  eyed = map(dis, pupD, 0, eyeD*1/3, eyeD, true);
   translate(xpos, ypos);
   //make the eyeball
   push();
@@ -33,7 +33,7 @@ function eye(xpos, ypos, rad) {
   pop();
   push();
     rotate(ang - PI/2);
-    translate(x, map(dis, 0, pupD - eyed/2, 0 , pupD - eyed*2/5 - pupD/6, true ))
+    translate(x, map(dis, 0, pupD - eyed, 0 , pupD - eyed*2/5 - pupD/6, true ))
     fill(50, 180, 130);
     ellipse(0, 0, pupD, pupd);
     fill(0);

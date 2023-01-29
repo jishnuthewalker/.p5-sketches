@@ -44,7 +44,7 @@ function funckyMeteor(start) {
   strokeWeight(20)
   stroke(100-myHue, 50, 100)
   // rotate(radians(start))
-  arc(windowWidth/2, windowHeight/2, noise(spid2) * radius, noise(spid2) * radius, radians(50 + spid1 + start), radians(60 + spid1 + start))
+  arc(windowWidth/3, windowHeight/3, noise(spid2) * radius, noise(spid2) * radius, radians(50 + spid1 + start), radians(60 + spid1 + start))
   pop()
 
 }
