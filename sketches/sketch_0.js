@@ -3,19 +3,19 @@ let bg = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  checkbox = createCheckbox('draw mode', true);
-  checkbox.changed(switchValue);
+  // checkbox = createCheckbox('draw mode', true);
+  checkbox = document.getElementById('myCheckedEvent');
   strokeWeight(4);
 //  background(0);
 }
 
 function switchValue() {
-  if (checkbox.checked()) {
+  if (checkbox.checked) {
     console.log('checkin!');
-    bg = 0;
+    bg = 1;
   } else {
     console.log('uncheckin!');
-    bg = 1;
+    bg = 0;
   }
 }
 
