@@ -1,7 +1,7 @@
 function setup() {
-  xwidth = 400;
-  ywidth = 400;
-  createCanvas(xwidth, ywidth);
+  xwidth = windowHeight;
+  ywidth = windowHeight;
+  createCanvas(windowWidth, ywidth);
 }
 
 function draw() {
@@ -12,7 +12,7 @@ function draw() {
   push();
   translate(xwidth / 4, ywidth / 4);
   fill(255, 255, 255);
-  circle(0, 0, 400);
+  circle(0, 0, windowHeight);
   pop();
 
 
@@ -28,7 +28,8 @@ function draw() {
     pupD = xwidth/2;
     ellipse(0, 0, pupD, pupD/2);
   fill(0);
-  ellipse(0, 0, 75, 40);
+  eyeD = xwidth/4;
+  ellipse(0, 0, eyeD, eyeD/2);
   pop();
   pop();
   //circle(xwidth/(6/5), ywidth/(6/5), 100);
