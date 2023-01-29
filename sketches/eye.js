@@ -17,8 +17,13 @@ function draw() {
 
 
   push();
-  translate(xwidth / 4, ywidth / 4);
-  rotate(radians(-mouseX / 8) + radians(45));
+  let x = xwidth / 4;
+  let y = ywidth / 4;
+  ang = atan2(mouseY-y,mouseX-x);
+  translate(x, y);
+  rotate(-PI/4)
+  rotate(ang);
+  // rotate(radians(-mouseX / 8) + radians(45));
   //rotates the eyris with an offset
     push();
     translate(-xwidth / 4, -ywidth / 4);
