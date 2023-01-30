@@ -8,6 +8,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
   graphics = createGraphics(200,200);
   graphics.background(255);
+  colorMode(RGB, 255)
 //  camera = createCamera();
   createEasyCam();
   document.oncontextmenu = function() { return false; }
@@ -31,11 +32,24 @@ function draw() {
   //    rotateX((rotX * 3.14) / 180);
   //    rotateY((rotY * 3.14) / 180);
 }*/
-  square(200, 200, 200);
+  fill(valX, valY, valZ);
+  // square(200, 200, 200);
   rotateX(0.5 + (rotX * 3.14) / 180);
   rotateY(0.5 + (rotY * 3.14) / 180);
   rotateZ(1.3);
-  box(valX, valY, valZ);
+  describe('black 50-by-50 rect turns white with mouse doubleClick/press.');
+
+
+
+  let value = 0;
+
+function doubleClicked() {
+  if (value === 0) {
+    box(valX, valY, valZ);
+  } else {
+    sphere(valX, valY, valZ)
+  }
+}
 
 
 
