@@ -7,24 +7,42 @@
   <title>Jishnuthewalker</title>
     <style>
       @font-face {
-        font-family: "Roboto";
-        src: url(assets/Roboto-Black.ttf) format("truetype");
+        font-family: "IBMPlexMono";
+        src: url(assets/IBMPlexMono-Bold.ttf) format("truetype");
         /* Roboto-Black.ttf */
         }
       body {
-        padding: 100px;
-        /* margin: 100px; */
+        /* padding: 300px; */
+        margin: 200px;
         vertical-align: baseline;
         text-decoration: none;
-
+        background-color: black;
+        font-family: 'IBMPlexMono';
         }
       canvas {
         vertical-align: baseline;
         }
-      .container {        vertical-align: baseline;
-        font-size: 20px;
+      .container {
+        vertical-align: baseline;
+        font-size: 40px;
         text-align: center;
-        font-family: 'Roboto';
+
+        text-transform: uppercase;
+        line-height: 70px;
+        /* color: pink; */
+        /* background-color: purple; */
+        /* color: white; */
+      }
+      a:link, a:visited {
+        text-decoration: none;
+        padding: 8px 25px;
+        color: pink;
+        background-color: purple;
+
+      }
+      a:hover, a:active {
+      background-color: yellow;
+      color: orange;
       }
     </style>
   <script src="src/p5.js"></script>
