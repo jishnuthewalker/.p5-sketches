@@ -38,8 +38,8 @@ function draw() {
   rotateY(0.5 + (rotY * 3.14) / 180);
   rotateZ(1.3);
   describe('black 50-by-50 rect turns white with mouse doubleClick/press.');
-
-
+  box(valX, valY, valZ);
+  
 
   let value = 0;
 
